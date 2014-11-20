@@ -1,0 +1,52 @@
+{% load staticfiles thumbnail endless %}
+
+{% lazy_paginate content_list %}
+{% for content in content_list %}
+<article>
+    <div class="msc_status">
+        <ul>
+            <li class="msc_seen">
+                <i class="glyphicon glyphicon-eye-open"></i>
+                <label>{{ content.number_of_views }}</label>
+            </li>
+            <li class="msc_comments">
+                <i class="glyphicon glyphicon-comment"></i>
+                <label>{{ content.number_of_comments }}</label>
+            </li>
+            <li class="msc_likes">
+                <i class="glyphicon glyphicon-heart"></i>
+                <label>{{ content.number_of_likes }}</label>
+            </li>
+        </ul>
+    </div>
+
+    <a href="{{ content.original_url }}" target="_blank" title="Abrir" class="msc_content">
+        <img src="{{ content.image_url }}" alt="{{ content.title }}">
+
+        <p>{{ content.text }}</p>
+    </a>
+
+    <div class="msc_actions">
+        <ul class="fx_circle out">
+            <li>
+                <a href="#" title="Me gusta">
+                    <i class="like"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="Comentar">
+                    <i class="comment"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="Compartir">
+                    <i class="share"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</article>
+
+{% endfor %}
+
+{% show_more "Cargar más contenido" "Cargando..." %}
