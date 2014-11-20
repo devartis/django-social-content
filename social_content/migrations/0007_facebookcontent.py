@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='FacebookContent',
             fields=[
-                ('content_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='content.Content')),
+                ('content_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='social_content.Content')),
                 ('number_of_comments', models.IntegerField(default=0, null=True, verbose_name='number of comments', blank=True)),
                 ('number_of_likes', models.IntegerField(default=0, null=True, verbose_name='number of likes', blank=True)),
                 ('video_url', models.URLField(null=True, verbose_name='video URL', blank=True)),
