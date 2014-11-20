@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'twitter content',
             },
-            bases=('content.content',),
+            bases=('social_content.content',),
         ),
         migrations.CreateModel(
             name='YoutubeContent',
@@ -38,6 +38,6 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'youtube content',
             },
-            bases=('content.content',),
+            bases=('social_content.content',),
         ),
     ]
