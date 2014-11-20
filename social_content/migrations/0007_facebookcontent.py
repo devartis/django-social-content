@@ -22,6 +22,6 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'facebook content',
             },
-            bases=('content.content',),
+            bases=('social_content.content',),
         ),
     ]
