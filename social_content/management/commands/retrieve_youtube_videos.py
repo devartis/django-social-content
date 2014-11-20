@@ -6,7 +6,7 @@ from apiclient.discovery import build
 from oauth2client.file import Storage
 from django.conf import settings
 
-from content.models import YoutubeContent
+from social_content.models import YoutubeContent
 
 
 def prepare_credentials():

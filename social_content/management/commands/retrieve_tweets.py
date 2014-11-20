@@ -7,7 +7,7 @@ import oauth2
 import json
 import urllib
 
-from content.models import TwitterContent
+from social_content.models import TwitterContent
 
 
 class Command(BaseCommand):

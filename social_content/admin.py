@@ -1,5 +1,5 @@
 from django.contrib import admin
-from content.models import YoutubeContent, TwitterContent, FacebookContent
+from social_content.models import YoutubeContent, TwitterContent, FacebookContent
 
 
 class YoutubeContentAdmin(admin.ModelAdmin):

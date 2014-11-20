@@ -4,7 +4,7 @@ from datetime import datetime
 import re
 from django.conf import settings
 from open_facebook import OpenFacebook
-from content.models import FacebookContent
+from social_content.models import FacebookContent
 
 
 
