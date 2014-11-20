@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('content', '0004_auto_20141113_1444'),
+        ('social_content', '0004_auto_20141113_1444'),
     ]
 
     operations = [
