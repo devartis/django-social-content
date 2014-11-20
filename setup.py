@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from setuptools import setup, find_packages
-from devartis_admin import VERSION
+from social_content import VERSION
 
 github_url = 'https://github.com/devartis/django-social-content'
 long_desc = '''
