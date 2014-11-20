@@ -8,7 +8,7 @@ long_desc = '''
 %s
 
 %s
-''' % (open('README').read(), open('CHANGELOG').read())
+''' % (open('README.md').read(), open('CHANGELOG').read())
 
 setup(
     name='django-social-admin',
