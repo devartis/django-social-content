@@ -11,7 +11,7 @@ long_desc = '''
 ''' % (open('README.md').read(), open('CHANGELOG').read())
 
 setup(
-    name='django-social-admin',
+    name='django-social-content',
     version=VERSION.replace(' ', '-'),
     description='Downloads feeds from Twitter, Facebook and Youtube',
     long_description=long_desc,
