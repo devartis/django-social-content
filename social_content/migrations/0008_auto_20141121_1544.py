@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('content', '0007_facebookcontent'),
+        ('social_content', '0007_facebookcontent'),
     ]
 
     operations = [
