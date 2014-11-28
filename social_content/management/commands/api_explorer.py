@@ -11,9 +11,9 @@ from apiclient.discovery import build
 from oauth2client.file import Storage
 from django.core.files.base import ContentFile
 
-from content.models import FacebookContent
-from content.models import TwitterContent
-from content.models import YoutubeContent
+from social_content.models import FacebookContent
+from social_content.models import TwitterContent
+from social_content.models import YoutubeContent
 
 
 class SocialApi(object):
