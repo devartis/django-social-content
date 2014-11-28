@@ -20,7 +20,9 @@ class Content(PolymorphicModel):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('created at'), blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('updated at'), blank=True, null=True)
 
-    image_url = models.URLField(blank=True, null=True, verbose_name=_('image URL'))
+    image_url = models.URLField(max_length=500, blank=True, null=True, verbose_name=_('image URL'))
+
+    image = models.ImageField(blank=True, null=True)
 
     position = PositionField(verbose_name=_('position'))
 
