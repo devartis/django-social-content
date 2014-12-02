@@ -59,6 +59,9 @@ class YoutubeContent(Content):
     def __unicode__(self):
         return self.title
 
+    def embed_url(self):
+        return self.original_url.replace("watch?v=", "embed/")
+
 
 class FacebookContent(Content):
     class Meta:
