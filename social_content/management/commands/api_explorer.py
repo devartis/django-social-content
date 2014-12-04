@@ -190,12 +190,12 @@ class YoutubeApiExplorer(SocialApi):
         #     }
         # information must be obtained from your google project
 
-        flow = flow_from_clientsecrets('client_secrets.json',
-                                       message='client_secret is missing',
-                                       scope="https://www.googleapis.com/auth/youtube.readonly")
-        flow.params['approval_prompt'] = 'force'
-
         if credentials is None:
+            flow = flow_from_clientsecrets('client_secrets.json',
+                               message='client_secret is missing',
+                               scope="https://www.googleapis.com/auth/youtube.readonly")
+            flow.params['approval_prompt'] = 'force'
+
             credentials = run(flow, storage)
 
         return credentials
