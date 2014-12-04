@@ -11,6 +11,10 @@ from apiclient.discovery import build
 from oauth2client.file import Storage
 from django.core.files.base import ContentFile
 
+from oauth2client.client import flow_from_clientsecrets
+from oauth2client.tools import run
+
+
 from social_content.models import FacebookContent
 from social_content.models import TwitterContent
 from social_content.models import YoutubeContent
@@ -166,6 +170,32 @@ class YoutubeApiExplorer(SocialApi):
     def prepare_credentials(self):
         storage = Storage(self.credentials['token_file_name'])
         credentials = storage.get()
+
+        # The first time you ask for authorization if you don't have a previous youtube.dat with access_token,
+        # the authentication flow must be run
+        # To do this you'll need a client_secrets.json and a google project that has access to google youtube api
+        # For example: https://console.developers.google.com/project/quilmes-qlub
+        # Check that your access_token has a 'refresh_token' so that it will refresh periodically
+        # More information in: https://developers.google.com/youtube/v3/getting-started#before-you-start
+
+        # client_secrets example:
+        # {
+        #       "installed": {
+        #         "client_id":"xxxxxxxxx",
+        #         "client_secret": "xxxxxxxx",
+        #         "redirect_uris": ["http://localhost:8080/"],
+        #         "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        #         "token_uri": "https://accounts.google.com/o/oauth2/token"
+        #       }
+        #     }
+        # information must be obtained from your google project
+
+        flow = flow_from_clientsecrets('client_secrets.json',
+                                       message='client_secret is missing',
+                                       scope="https://www.googleapis.com/auth/youtube.readonly")
+
+        if credentials is None:
+            credentials = run(flow, storage)
 
         return credentials
 
