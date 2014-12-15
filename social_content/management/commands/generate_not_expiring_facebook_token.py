@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 
-from open_facebook import api, OpenFacebook
-
+from open_facebook import OpenFacebook
+import httplib2
 
 class Command(BaseCommand):
 
@@ -16,11 +16,14 @@ class Command(BaseCommand):
         # Another way to find the id is using http://findmyfacebookid.com/
         # There you will only have to enter the url of your page to get the page id
 
-        user_token_extended = api.FacebookConnection.request("oauth/access_token?client_id="+app_id+"&client_secret=" +
-                                                             app_secret+"&grant_type=fb_exchange_token&fb_exchange_token=" +
-                                                             user_token)
+        h = httplib2.Http("")
+        resp, content = h.request("https://graph.facebook.com/oauth/access_token?client_id"
+                                  "="+app_id+"&client_secret="+app_secret+"&grant_type=fb_excha"
+                                  "nge_token&fb_exchange_token="+user_token, "POST")
+        
+        user_token_extended = content[13:]
 
-        graph = OpenFacebook(user_token_extended["access_token"])
+        graph = OpenFacebook(user_token_extended)
 
         accounts = graph.get('me/accounts')
 
