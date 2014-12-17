@@ -89,7 +89,7 @@ class FacebookApiExplorer(SocialApi):
 
                 def amount(parameter):
                     try:
-                        return len(post[parameter]["data"])
+                        return self.graph.get(post['id']+'/'+parameter, summary='1')['summary']['total_count']
                     except KeyError:
                         return 0
 
