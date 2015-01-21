@@ -78,7 +78,10 @@ class FacebookApiExplorer(SocialApi):
                 published_at = post["created_time"]
                 published_at = datetime.strptime(published_at[0:10]+' '+published_at[11:19], '%Y-%m-%d %H:%M:%S')
                 published_at = timezone.make_aware(published_at, timezone.get_fixed_timezone(0))
-                original_url = post["link"]
+                if "link" in post.keys():
+                    original_url = post["link"]
+                else:
+                    original_url = "https://www.facebook.com/"+account_id+"/posts/"+post_id
 
                 def search(parameter):
                     try:
