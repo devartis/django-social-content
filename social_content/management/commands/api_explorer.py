@@ -31,7 +31,7 @@ class SocialApi(object):
             old_content = new_content.__class__.objects.get(identifier=new_content.identifier)
 
             content_attrs = {key: value for key, value in vars(new_content).items()
-                             if key not in ['id', 'published', 'created_at', 'updated_at']}
+                             if key not in ['id', 'published', 'created_at', 'updated_at', 'image']}
 
             for attr in content_attrs.keys():
                 setattr(old_content, attr, content_attrs[attr])
