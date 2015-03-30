@@ -103,7 +103,7 @@ class FacebookApiExplorer(SocialApi):
                 number_of_likes = amount("likes")
                 number_of_comments = amount("comments")
 
-                if image_url:
+                if image_url and image_id:
 
                     feed = self.graph.get(image_id)
                     try:
