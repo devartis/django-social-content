@@ -99,14 +99,22 @@ class FacebookApiExplorer(SocialApi):
                 video_url = search("source")
                 image_url = search("picture")
                 image_id = search("object_id")
+                post_type = search("type")
                 number_of_likes = amount("likes")
                 number_of_comments = amount("comments")
 
                 if image_url:
 
                     feed = self.graph.get(image_id)
+                    try:
+                        if post_type == 'video':
+                            image_url = sorted(feed['format'], key=lambda k: k['width'], reverse=True)[0]['picture']
 
-                    image_url = sorted(feed['images'], key=lambda k: k['width'], reverse=True)[0]['source']
+                        else:
+                            image_url = sorted(feed['images'], key=lambda k: k['width'], reverse=True)[0]['source']
+                    except KeyError:
+                        #Error finding image_url
+                        pass
 
                 new_content = FacebookContent(identifier=post_id, text=text, published_at=published_at,
                                               image_url=image_url, original_url=original_url,
