@@ -16,7 +16,6 @@ class Command(BaseCommand):
                 response = urllib.urlopen(IMAGE_URL)
                 file_name = "%s.jpg" % content.identifier
                 content.image.save(file_name, ContentFile(response.read()), save=False)
-                content.published = True
                 content.save()
 
 __author__ = 'guillermo'
