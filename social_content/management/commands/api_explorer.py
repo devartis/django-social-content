@@ -121,7 +121,7 @@ class FacebookApiExplorer(SocialApi):
                                               number_of_comments=number_of_comments, number_of_likes=number_of_likes,
                                               video_url=video_url)
 
-                if text or video_url or image_url:
+                if (text or video_url or image_url) and post_type != 'link':
                     self.update_content(new_content)
 
 
