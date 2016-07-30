@@ -3,6 +3,7 @@ from datetime import datetime
 import re
 from open_facebook import OpenFacebook
 import oauth2
+import isodate
 import json
 import urllib
 import urllib2
@@ -281,11 +282,10 @@ class YoutubeApiExplorer(SocialApi):
                 dislike_count = video["statistics"]["dislikeCount"]
                 duration = video["contentDetails"]["duration"]
 
-                if len(duration) > 5:
-                    minutes, secs = duration[2:-1].split('M')
-                    duration = int(minutes)*60+int(secs)
-                else:
-                    duration = duration[2:-1]
+                try:
+                    duration = isodate.parse_duration(duration).seconds
+                except isodate.isoerror.ISO8601Error:
+                    duration = 0
 
                 new_content = YoutubeContent(number_of_views=view_count, number_of_comments=comment_count,
                                              number_of_likes=like_count, number_of_dislikes=dislike_count,

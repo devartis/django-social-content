@@ -32,5 +32,8 @@ setup(
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
+    install_requires=[
+        "isodate==0.5.4",
+    ],
     zip_safe=False,
 )
