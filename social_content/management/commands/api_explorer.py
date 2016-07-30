@@ -28,22 +28,26 @@ class SocialApi(object):
 
     def update_content(self, new_content):
         try:
-            old_content = new_content.__class__.objects.get(identifier=new_content.identifier)
+            try:
+                old_content = new_content.__class__.objects.get(identifier=new_content.identifier)
 
-            content_attrs = {key: value for key, value in vars(new_content).items()
-                             if key not in ['id', 'published', 'created_at', 'updated_at', 'image']}
+                content_attrs = {key: value for key, value in vars(new_content).items()
+                                if key not in ['id', 'published', 'created_at', 'updated_at', 'image']}
 
-            for attr in content_attrs.keys():
-                setattr(old_content, attr, content_attrs[attr])
-            old_content.save()
+                for attr in content_attrs.keys():
+                    setattr(old_content, attr, content_attrs[attr])
+                old_content.save()
 
-        except new_content.__class__.DoesNotExist:
+            except new_content.__class__.DoesNotExist:
 
-            if new_content.image_url:
-                self.get_image(new_content)
+                if new_content.image_url:
+                    self.get_image(new_content)
 
-            new_content.published = True
-            new_content.save()
+                new_content.published = True
+                
+                    new_content.save()
+        except Exception as err:
+            print 'Could not save content %s: %s' % (new_content, err)
 
     def run_flow(self):
         self.get_data()
@@ -121,8 +125,11 @@ class FacebookApiExplorer(SocialApi):
                                               number_of_comments=number_of_comments, number_of_likes=number_of_likes,
                                               video_url=video_url)
 
-                if (text or video_url or image_url) and post_type != 'link':
-                    self.update_content(new_content)
+                try:
+                    if (text or video_url or image_url) and post_type != 'link':
+                        self.update_content(new_content)
+                except Exception as err:
+                    print 'Could not save content %s: %s' % (new_content, err)
 
 
 class TwitterApiExplorer(SocialApi):
