@@ -24,7 +24,7 @@ class Content(PolymorphicModel):
 
     image = models.ImageField(blank=True, null=True)
 
-    position = PositionField(verbose_name=_('position'))
+    position = PositionField(verbose_name=_('position'), default=0)
 
     original_url = models.URLField(max_length=2500, blank=True, null=True, verbose_name=_('original URL'))
 

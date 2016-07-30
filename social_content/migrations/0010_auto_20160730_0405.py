@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import positions.fields
 
 
 class Migration(migrations.Migration):
@@ -34,12 +33,6 @@ class Migration(migrations.Migration):
             model_name='content',
             name='polymorphic_ctype',
             field=models.ForeignKey(related_name='polymorphic_social_content.content_set', editable=False, to='contenttypes.ContentType', null=True),
-            preserve_default=True,
-        ),
-        migrations.AlterField(
-            model_name='content',
-            name='position',
-            field=positions.fields.PositionField(default=-1, verbose_name='position'),
             preserve_default=True,
         ),
         migrations.AlterField(
