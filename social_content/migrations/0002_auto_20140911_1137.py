@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='content',
             name='position',
-            field=positions.fields.PositionField(default=-1, verbose_name='position'),
+            field=positions.fields.PositionField(default=0, verbose_name='position'),
             preserve_default=True,
         ),
         migrations.AlterField(
