@@ -45,7 +45,7 @@ class SocialApi(object):
 
                 new_content.published = True
                 
-                    new_content.save()
+                new_content.save()
         except Exception as err:
             print 'Could not save content %s: %s' % (new_content, err)
 
